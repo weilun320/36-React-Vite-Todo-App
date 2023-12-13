@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Link, Outlet, Route, Routes } from "react-router-dom";
 import { TodoContext } from "./contexts/TodoContext";
 import useLocalStorage from "use-local-storage";
 import Home from "./pages/Home";
@@ -13,9 +13,9 @@ function Layout() {
     <>
       <Navbar bg="light" variant="light">
         <Container>
-          <Navbar.Brand href="/">Todos</Navbar.Brand>
+          <Navbar.Brand as={Link} to="/">Todos</Navbar.Brand>
           <Nav>
-            <Nav.Link href="/add">Add Todo</Nav.Link>
+            <Nav.Link as={Link} to="/add">Add Todo</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
@@ -29,7 +29,7 @@ function App() {
 
   return (
     <TodoContext.Provider value={{ todos, setTodos }}>
-      <BrowserRouter>
+      <BrowserRouter basename="/36-React-Vite-Todo-App/">
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
